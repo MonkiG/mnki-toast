@@ -1,4 +1,4 @@
-import MnkiToast from './components/toasts/MnkiToast'
+import MnkiToast from './components/toasts/MnkiToast/MnkiToast'
 
 async function addToast (text, { position, time }, waitTime) {
   return new Promise((resolve, _reject) => {

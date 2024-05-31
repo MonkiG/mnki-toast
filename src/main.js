@@ -1,4 +1,4 @@
-import MnkiToast from './components/toasts/MnkiToast'
+import MnkiToast from './components/toasts/MnkiToast/MnkiToast'
 import toastFactory from './toastFactory'
 
 const buttonSingle = document.querySelector('button[data-type="single"]')

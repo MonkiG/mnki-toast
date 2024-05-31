@@ -1,8 +1,8 @@
-import PropError from '../../errors/PropError'
-import { ToastPositions } from '../../consts'
+import PropError from '../../../errors/PropError'
+import { ToastPositions, DEFAULT_TIME, ANIMATION_TIME } from '../../../consts'
+import { keyFrameEndBot, keyFrameEndTop, keyFrameInitBot, keyframeInitTop } from './keyframes'
+import { botCenter, botLeft, botRight, topCenter, topLeft, topRight } from './positionClasses'
 
-const DEFAULT_TIME = 5 * 1000 // Miliseconds
-const ANIMATION_TIME = 0.3 // Seconds
 export default class MnkiToast extends HTMLElement {
   constructor (text, { description, position, time } = {}) {
     super()
@@ -34,86 +34,23 @@ export default class MnkiToast extends HTMLElement {
       width: 40%;
       background: gray;
     }
-    
-    :host(.top-right){
-      top:10px;
-      right: 10px;
-    }
-    :host(.top-left){
-      top:10px;
-      left: 10px;
-    }
-    :host(.top-center){
-      top:10px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
 
-    :host(.bot-left){
-      bottom: 10px;
-    }
-    :host(.bot-center){
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-    :host(.bot-right){
-      bottom: 10px;
-      right: 10px
-    }
+    ${topLeft}
+    ${topCenter}
+    ${topRight}
 
-    @keyframes init-top {
-      from {
-        opacity: 0%;
-        top: 0px
-      }
-      to {
-        opacity: 100%;
-        top: 10px
-      }
-    }
+    ${botLeft}
+    ${botCenter}
+    ${botRight}
 
-    @keyframes init-bot {
-      from {
-        opacity: 0%;
-        bottom: 0px
-      }
-      to {
-        opacity: 100%;
-        bottom: 10px
-      }
-    }
-
-    @keyframes end-top {
-      from {
-        opacity: 100%;
-        top: 10px;
-      }
-      to{
-        opacity: 0%;
-        top: 0px;
-      }
-    }
-
-    @keyframes end-bot {
-      from {
-        opacity: 100%;
-        bottom: 10px;
-      }
-      to{
-        opacity: 0%;
-        bottom: 0;
-      }
-    }
+    ${keyframeInitTop}
+    ${keyFrameInitBot}
+    ${keyFrameEndTop}
+    ${keyFrameEndBot}    
   `
 
   connectedCallback () {
     this.#handleProps()
-    // this.render()
-  }
-
-  disconnectedCallback () {
-    console.log('desconectado')
   }
 
   #render () {
@@ -132,20 +69,12 @@ export default class MnkiToast extends HTMLElement {
     `
   }
 
-  again () {
-    console.log(this)
-    this.#render()
-    document.body.insertAdjacentElement('afterbegin', this)
-    this.#handleDisconnected()
-  }
-
   #handleDisconnected () {
     setTimeout(() => {
       const endAnimation = this.position.startsWith('top') ? 'end-top' : 'end-bot'
       this.style.animationName = endAnimation
       this.style.animationDuration = `${ANIMATION_TIME}s`
       this.addEventListener('animationend', (e) => {
-        console.log(e)
         this.remove()
       }, { once: true })
     }, this.time)
@@ -153,11 +82,10 @@ export default class MnkiToast extends HTMLElement {
 
   #handleProps () {
     // if the component is used as an html elemet "<mnki-toast></mnki-toast>" set the properties from the data-* attributes
-    const { text, description, /* type, */ position, time } = this.dataset
+    const { text, description, position, time } = this.dataset
 
     this.text = this.text ?? text
     this.description = this.description ?? description
-    // this.type = this.type ?? ToastTypes[type] ?? ToastTypes.default
     this.position = this.position ?? position ?? ToastPositions['top-center']
     this.time = this.time ?? time ?? DEFAULT_TIME
     this.classList.add(...[this.position])
