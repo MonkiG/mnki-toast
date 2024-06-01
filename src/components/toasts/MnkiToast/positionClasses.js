@@ -15,7 +15,6 @@ export const topCenter = /* css */`
     :host(.top-center){
         top:10px;
         left: 50%;
-        transform: translateX(-50%);
     }
 `
 
@@ -29,7 +28,6 @@ export const botCenter = /* css */`
     :host(.bot-center){
         bottom: 10px;
         left: 50%;
-        transform: translateX(-50%);
     }
 `
 

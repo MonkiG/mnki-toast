@@ -7,7 +7,7 @@ Standalone built in web components toast component
 ## Todo
 
 - [🕥] handle the multiple constructors and connecteds either Constructor, create element, inner element
-- [ ] Handle multiple toast (stack them or expand them) 
+- [x] Handle multiple toasts expand them
+- [ ] Handle multiple toasts stack them
 - [ ] Add multiple styles of toasts (success, warn, error, default)
 - [ ] Add multiple types of toasts (default, action, etc...)
-- [ ]
