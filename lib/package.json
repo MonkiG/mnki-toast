@@ -1,0 +1,29 @@
+{
+"name": "@monkig/mnki-toast",
+  "version": "0.0.1",
+  "type": "module",
+  "description": "Personal opinionated standalone toast component built in web components",
+  "main": "./main.js",
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/MonkiG/mnki-toast"
+  },
+  "keywords": [
+    "toast",
+    "javascript",
+    "notifications", 
+    "monkig",
+    "web components"
+  ],
+  "author": {
+    "email": "raan.heam@gmail.com",
+    "name": "Ramón Hernández (MonkiG)",
+    "url": "https://github.com/MonkiG"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/MonkiG/mnki-toast#readme",
+  "workspaces": [
+    "lib",
+    "web"
+  ]
+}
