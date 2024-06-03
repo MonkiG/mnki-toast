@@ -4,9 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "dev:web": "cd ./web && vite",
+    "build:web": "cd ./web && vite build",
+    "preview:web": "cd ./web && vite preview"
   },
   "devDependencies": {
     "eslint": "^8.57.0",
